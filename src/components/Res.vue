@@ -47,7 +47,7 @@ const props = defineProps({
   background-color: var(--slate-900);
   border-radius: inherit;
   border-top-left-radius: 0px;
-  border-bottom-left-radius: 20%;
+  border-bottom-left-radius: 15%;
 
   &:has(.no-res) {
     display: grid;
@@ -86,7 +86,7 @@ const props = defineProps({
       padding-inline: 10%;
 
       p {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
       }
     }
 
