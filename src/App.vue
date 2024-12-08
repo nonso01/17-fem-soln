@@ -2,13 +2,20 @@
 import { ref } from "vue";
 import Res from "./components/Res.vue";
 
-const resultAvailable = ref(false);
+// const poundSign = '£'
+const resultAvailable = ref(!false);
+const monthlyCost = ref("£0.00");
+const anualCost = ref("£0.00");
 </script>
 
 <template>
   <div class="calculator flex btw">
     <div>test</div>
-    <Res :resultAvailable="resultAvailable" />
+    <Res
+      :resultAvailable="resultAvailable"
+      :monthlyCost="monthlyCost"
+      :anualCost="anualCost"
+    />
   </div>
 </template>
 
