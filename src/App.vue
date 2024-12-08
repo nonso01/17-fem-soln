@@ -25,7 +25,7 @@ const anualCost = ref("£0.00");
   width: 55dvw;
   height: 70dvh;
   background-color: var(--white);
-  border-radius: 1.1rem;
+  border-radius: 1.4rem;
   box-shadow: 0 4px 1rem rgb(0 0 0 / 0.1);
 }
 
