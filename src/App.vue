@@ -22,7 +22,7 @@ const anualCost = ref("£0.00");
 
 <style lang="css" scoped>
 .calculator {
-  width: 60dvw;
+  width: 55dvw;
   height: 70dvh;
   background-color: var(--white);
   border-radius: 1.1rem;
