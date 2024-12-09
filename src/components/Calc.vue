@@ -25,14 +25,14 @@ const props = defineProps({
           <p>Mortage Team</p>
           <div>
             <span class="bd flex center bold">Years</span>
-            <input type="number" value="0" min="0" />
+            <input type="number" min="0" />
           </div>
         </div>
         <div class="flex col btw">
           <p>Interest Rate</p>
           <div>
             <span class="bd flex center bold">%</span>
-            <input type="number" value="0" min="0" max="100" />
+            <input type="number" min="0" max="100" />
           </div>
         </div>
       </div>
