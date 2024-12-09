@@ -2,6 +2,8 @@
 const props = defineProps({
   handleClearAll: Function,
   handleMortageAmount: Function,
+  handleMortageYears: Function,
+  handleMortageRate: Function,
 });
 </script>
 
@@ -12,38 +14,39 @@ const props = defineProps({
       <u @click="handleClearAll">Clear all</u>
     </div>
     <div class="form flex col even">
-      <div class="amount flex col btw ">
+      <div class="amount flex col btw">
         <p>Mortage Amount</p>
         <div class="">
           <span class="bd flex center bold">£</span> <input type="text" />
         </div>
       </div>
-      <div class="team  flex btw">
+      <div class="team flex btw">
         <div class="flex col btw">
           <p>Mortage Team</p>
           <div>
             <span class="bd flex center bold">Years</span>
-            <input type="number" value="0" />
+            <input type="number" value="0" min="0" />
           </div>
         </div>
         <div class="flex col btw">
           <p>Interest Rate</p>
           <div>
             <span class="bd flex center bold">%</span>
-            <input type="number" value="0" min="0.5" max="100" />
+            <input type="number" value="0" min="0" max="100" />
           </div>
         </div>
       </div>
-      <div class="type  flex col even">
+      <div class="type flex col even">
         <p>Mortage Type</p>
         <div class="trans">
           <input type="radio" name="pay" class="trans" /> <span>Repayment</span>
         </div>
         <div class="trans">
-          <input type="radio" name="pay" class="trans" /> <span>Interest Only</span>
+          <input type="radio" name="pay" class="trans" />
+          <span>Interest Only</span>
         </div>
       </div>
-      <div class="btn  flex center even">
+      <div class="btn flex center even">
         <img src="/images/icon-calculator.svg" />
         <span>Calculate Repayments</span>
       </div>
@@ -77,8 +80,8 @@ input[type="number"] {
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--slate-900);
+  background-color: #fff;
 }
-
 
 .calculate {
   width: 50%;
