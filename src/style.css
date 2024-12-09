@@ -40,6 +40,10 @@
   font-weight: 600;
 }
 
+.trans {
+  transition-duration: 0.2s;
+}
+
 .flex {
   display: flex;
   &.col {
