@@ -4,6 +4,8 @@ const props = defineProps({
   handleMortageAmount: Function,
   handleMortageYears: Function,
   handleMortageRate: Function,
+  handleMortageType: Function,
+  handleCalculate: Function,
 });
 </script>
 
@@ -17,7 +19,8 @@ const props = defineProps({
       <div class="amount flex col btw">
         <p>Mortage Amount</p>
         <div class="">
-          <span class="bd flex center bold">£</span> <input type="text" />
+          <span class="bd flex center bold">£</span>
+          <input type="text" @input="handleMortageAmount" />
         </div>
       </div>
       <div class="team flex btw">
@@ -25,28 +28,41 @@ const props = defineProps({
           <p>Mortage Team</p>
           <div>
             <span class="bd flex center bold">Years</span>
-            <input type="number" min="0" />
+            <input type="number" min="0" max="25" @input="handleMortageYears" />
           </div>
         </div>
         <div class="flex col btw">
           <p>Interest Rate</p>
           <div>
             <span class="bd flex center bold">%</span>
-            <input type="number" min="0" max="100" />
+            <input type="number" min="0.1" max="100" @input="handleMortageRate" />
           </div>
         </div>
       </div>
       <div class="type flex col even">
         <p>Mortage Type</p>
         <div class="trans">
-          <input type="radio" name="pay" class="trans" /> <span>Repayment</span>
+          <input
+            type="radio"
+            id="repay"
+            name="pay"
+            class="trans"
+            @change="handleMortageType"
+          />
+          <span>Repayment</span>
         </div>
         <div class="trans">
-          <input type="radio" name="pay" class="trans" />
+          <input
+            type="radio"
+            id="interest"
+            name="pay"
+            class="trans"
+            @change="handleMortageType"
+          />
           <span>Interest Only</span>
         </div>
       </div>
-      <div class="btn flex center even">
+      <div class="btn flex center even trans" @click="handleCalculate">
         <img src="/images/icon-calculator.svg" />
         <span>Calculate Repayments</span>
       </div>
@@ -192,6 +208,10 @@ input[type="number"] {
   span {
     color: var(--slate-900);
     font-weight: 700;
+  }
+
+  &:hover {
+    opacity: 0.8;
   }
 }
 </style>

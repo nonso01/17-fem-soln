@@ -28,12 +28,12 @@ const props = defineProps({
         <div class="monthly">
           <p>Your monthly repayment</p>
 
-          <h1>{{ monthlyCost }}</h1>
+          <h1>£{{ monthlyCost }}</h1>
         </div>
         <div class="line"></div>
         <div class="anual">
           <p>Total you'll repay over the term</p>
-          <h2>{{ anualCost }}</h2>
+          <h2>£{{ anualCost }}</h2>
         </div>
       </div>
     </div>
