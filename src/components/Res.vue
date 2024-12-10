@@ -1,8 +1,8 @@
 <script setup>
 const props = defineProps({
   resultAvailable: Boolean,
-  monthlyCost: String,
-  anualCost: String,
+  monthlyCost: Number,
+  anualCost: Number,
 });
 </script>
 

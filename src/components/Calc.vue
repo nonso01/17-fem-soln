@@ -6,6 +6,11 @@ const props = defineProps({
   handleMortageRate: Function,
   handleMortageType: Function,
   handleCalculate: Function,
+  amountError: Boolean,
+  yearError: Boolean,
+  rateError: Boolean,
+  typeError: Boolean,
+  invalidChar: Boolean,
 });
 </script>
 
@@ -22,6 +27,9 @@ const props = defineProps({
           <span class="bd flex center bold">£</span>
           <input type="text" @input="handleMortageAmount" />
         </div>
+        <p v-if="amountError" class="error">
+          {{ invalidChar ? 'Not a Number' : "This field is required" }}
+        </p>
       </div>
       <div class="team flex btw">
         <div class="flex col btw">
@@ -30,13 +38,20 @@ const props = defineProps({
             <span class="bd flex center bold">Years</span>
             <input type="number" min="0" max="25" @input="handleMortageYears" />
           </div>
+          <p class="error" v-if="yearError">error</p>
         </div>
         <div class="flex col btw">
           <p>Interest Rate</p>
           <div>
             <span class="bd flex center bold">%</span>
-            <input type="number" min="0.1" max="100" @input="handleMortageRate" />
+            <input
+              type="number"
+              min="0.5"
+              max="100"
+              @input="handleMortageRate"
+            />
           </div>
+          <p class="error" v-if="rateError">error</p>
         </div>
       </div>
       <div class="type flex col even">
@@ -61,6 +76,7 @@ const props = defineProps({
           />
           <span>Interest Only</span>
         </div>
+        <p class="error" v-if="typeError">error</p>
       </div>
       <div class="btn flex center even trans" @click="handleCalculate">
         <img src="/images/icon-calculator.svg" />
@@ -90,13 +106,20 @@ input[type="text"],
 input[type="number"] {
   outline: none;
   border: 2px solid var(--slate-500);
-  height: 100%;
+  height: 53px;
   width: 100%;
   border-radius: 0.5rem;
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--slate-900);
   background-color: #fff;
+}
+
+.error {
+  color: var(--red);
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-block: 1%;
 }
 
 .calculate {
@@ -112,7 +135,7 @@ input[type="number"] {
 }
 
 .amount {
-  height: 19%;
+  min-height: 19%;
 
   input {
     padding-left: 11%;
