@@ -24,6 +24,7 @@ const mortageErrors = ref({
 });
 
 const invalidChar = ref(false);
+const invalidNum = ref(false);
 
 function handleClearAll() {
   log("clear all");
@@ -31,27 +32,29 @@ function handleClearAll() {
 }
 
 function handleMortageAmount({ target }) {
-  //
   mortageProps.value.amount = Number(target?.value);
   mortageErrors.value.amount = isNaN(mortageProps.value.amount);
   invalidChar.value = mortageErrors.value.amount;
-  log(invalidChar.value);
 }
 
 function handleMortageYears({ target }) {
   mortageProps.value.years = Number(target?.value);
-  // handle errors gracefully
-  mortageErrors.value.years = isNaN(mortageProps.value.years);
+  mortageErrors.value.years = false;
+
+  if (Number(target?.value) > 50) {
+    mortageErrors.value.years = true;
+    invalidNum.value = true
+  }
 }
 
 function handleMortageRate({ target }) {
   mortageProps.value.rate = Number(target?.value);
-  mortageErrors.value.rate = isNaN(mortageProps.value.rate);
+  mortageErrors.value.rate = false;
 }
 
 function handleMortageType({ target }) {
   mortageProps.value.type = target?.id;
-  // mortageErrors.value.type = true;
+  mortageErrors.value.type = false;
 }
 
 function t2Dec(n = 78.6767) {
@@ -75,7 +78,6 @@ function mortage(amount, years, rate) {
     },
   };
 }
-// log(mortage());
 
 function handleCalculate() {
   log(mortageProps.value);
@@ -83,13 +85,33 @@ function handleCalculate() {
 
   // work on formating 1000 == 1,000
 
-  if (mortageProps.value.type === "repay") { 
-    // test
-    resultAvailable.value = true;
+  mortageProps.value.amount <= 0 ? (mortageErrors.value.amount = true) : void 0;
+  mortageProps.value.years <= 0 ? (mortageErrors.value.years = true) : void 0;
+  mortageProps.value.rate <= 0 ? (mortageErrors.value.rate = true) : void 0;
+  mortageProps.value.type === "" ? (mortageErrors.value.type = true) : void 0;
+
+  if (Object.values(mortageErrors.value).every((x) => x === false)) {
     const { amount, years, rate } = mortageProps.value;
     const res = mortage(amount, years, rate);
-    monthlyCost.value = res.repayment.monthly;
-    anualCost.value = res.repayment.total;
+
+    switch (mortageProps.value.type) {
+      case "repay":
+        resultAvailable.value = true;
+        monthlyCost.value = res.repayment.monthly;
+        anualCost.value = res.repayment.total;
+        break;
+      case "interest":
+        resultAvailable.value = true;
+        monthlyCost.value = res.interestOnly.monthly;
+        anualCost.value = res.interestOnly.total;
+        break;
+      default:
+        log("error");
+    }
+
+    log("all false");
+  } else {
+    log("some true");
   }
 }
 </script>
@@ -108,6 +130,7 @@ function handleCalculate() {
       :rate-error="mortageErrors.rate"
       :type-error="mortageErrors.type"
       :invalid-char="invalidChar"
+      :invalid-num="invalidNum"
     />
     <Res
       :resultAvailable="resultAvailable"

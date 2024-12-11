@@ -11,6 +11,7 @@ const props = defineProps({
   rateError: Boolean,
   typeError: Boolean,
   invalidChar: Boolean,
+  invalidNum: Boolean,
 });
 </script>
 
@@ -28,7 +29,7 @@ const props = defineProps({
           <input type="text" @input="handleMortageAmount" />
         </div>
         <p v-if="amountError" class="error">
-          {{ invalidChar ? 'Not a Number' : "This field is required" }}
+          {{ invalidChar ? "Not a Number" : "This field is required" }}
         </p>
       </div>
       <div class="team flex btw">
@@ -36,22 +37,19 @@ const props = defineProps({
           <p>Mortage Team</p>
           <div>
             <span class="bd flex center bold">Years</span>
-            <input type="number" min="0" max="25" @input="handleMortageYears" />
+            <input type="number" min="1" max="25" @input="handleMortageYears" />
           </div>
-          <p class="error" v-if="yearError">error</p>
+          <p class="error" v-if="yearError">
+            {{ invalidNum ? "Max is 50" : "This field is required" }}
+          </p>
         </div>
         <div class="flex col btw">
           <p>Interest Rate</p>
           <div>
             <span class="bd flex center bold">%</span>
-            <input
-              type="number"
-              min="0.5"
-              max="100"
-              @input="handleMortageRate"
-            />
+            <input type="number" min="0.5" @input="handleMortageRate" />
           </div>
-          <p class="error" v-if="rateError">error</p>
+          <p class="error" v-if="rateError">This field is required</p>
         </div>
       </div>
       <div class="type flex col even">
@@ -76,7 +74,7 @@ const props = defineProps({
           />
           <span>Interest Only</span>
         </div>
-        <p class="error" v-if="typeError">error</p>
+        <p class="error" v-if="typeError">Select a type</p>
       </div>
       <div class="btn flex center even trans" @click="handleCalculate">
         <img src="/images/icon-calculator.svg" />
@@ -113,6 +111,7 @@ input[type="number"] {
   font-size: 1.1rem;
   color: var(--slate-900);
   background-color: #fff;
+  transition-duration: 0.2s;
 }
 
 .error {
@@ -136,6 +135,27 @@ input[type="number"] {
 
 .amount {
   min-height: 19%;
+
+  &:has(input:focus) {
+    input {
+      border-color: var(--lime);
+    }
+    span {
+      background-color: var(--lime);
+      border-color: var(--lime);
+    }
+  }
+
+  &:has(.error) {
+    input {
+      border-color: var(--red);
+    }
+    span {
+      background-color: var(--red);
+      color: var(--slate-100);
+      border-color: var(--red);
+    }
+  }
 
   input {
     padding-left: 11%;
@@ -163,6 +183,28 @@ input[type="number"] {
   div.col {
     height: 100%;
     width: 47%;
+
+    &:has(input:focus) {
+      input {
+        border-color: var(--lime);
+      }
+      span {
+        background-color: var(--lime);
+        border-color: var(--lime);
+      }
+    }
+
+    &:has(.error) {
+      input {
+        border-color: var(--red);
+      }
+      span {
+        background-color: var(--red);
+        color: var(--slate-100);
+        border-color: var(--red);
+      }
+    }
+
     div {
       height: min(60%, 53px);
     }
@@ -195,6 +237,7 @@ input[type="number"] {
     outline: 2px solid var(--slate-500);
     outline-offset: 4px;
     border-radius: 50%;
+    cursor: pointer;
 
     &:checked {
       background-color: var(--lime);
@@ -212,7 +255,12 @@ input[type="number"] {
     height: min(40%, 53px);
     border: 2px solid var(--slate-500);
     border-radius: 0.5rem;
-    cursor: pointer;
+    /* cursor: pointer; */
+
+    &:has(:checked) {
+      background-color: hsla(61, 70%, 52%, 0.22);
+      border-color: var(--lime);
+    }
 
     &:hover {
       border-color: var(--lime);
@@ -227,6 +275,10 @@ input[type="number"] {
   border-radius: 2rem;
   padding-inline: 10%;
   background-color: var(--lime);
+
+  &:active {
+    transform: translateY(3%);
+  }
 
   span {
     color: var(--slate-900);
