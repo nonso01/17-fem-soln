@@ -27,8 +27,21 @@ const invalidChar = ref(false);
 const invalidNum = ref(false);
 
 function handleClearAll() {
-  log("clear all");
+  // log("clear all");
   resultAvailable.value = false;
+  const input = document.querySelectorAll("input");
+  input.forEach((i) => {
+    i.value = "";
+    i.checked = false;
+  });
+  mortageProps.value = {
+    amount: 0,
+    years: 0,
+    rate: 0,
+    type: "",
+  };
+
+  for (let p in mortageErrors.value) mortageErrors.value[p] = false;
 }
 
 function handleMortageAmount({ target }) {
@@ -43,7 +56,7 @@ function handleMortageYears({ target }) {
 
   if (Number(target?.value) > 50) {
     mortageErrors.value.years = true;
-    invalidNum.value = true
+    invalidNum.value = true;
   }
 }
 
@@ -84,6 +97,7 @@ function handleCalculate() {
   // log(mortageErrors.value);
 
   // work on formating 1000 == 1,000
+  // .toLocalString('en-US') will do
 
   mortageProps.value.amount <= 0 ? (mortageErrors.value.amount = true) : void 0;
   mortageProps.value.years <= 0 ? (mortageErrors.value.years = true) : void 0;
@@ -143,18 +157,44 @@ function handleCalculate() {
 <style lang="css" scoped>
 .calculator {
   width: 55dvw;
-  min-height: 70dvh;
-  /* trying min-height instead */
+  height: 70dvh;
   background-color: var(--white);
   border-radius: 1.4rem;
   box-shadow: 0 4px 1rem rgb(0 0 0 / 0.1);
 }
 
-@media screen and (min-width: 1980px) {
+@media screen and (min-width: 1440px) {
   #app {
     .calculator {
       width: min(60dvw, 1100px);
       height: min(70dvh, 570px);
+      /* background-color: black; */
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #app {
+    .calculator {
+      /* border: 2px solid red; */
+      border-radius: 0;
+      /* flex-direction: column; */
+      display: block;
+      width: 100dvw;
+      min-height: 100dvh;
+    }
+
+    .calculate {
+      /* background-color: black; */
+      border: 2px solid red;
+      width: 100%;
+      height: 800px;
+    }
+
+    .res {
+      width: 100%;
+      height: 500px;
+      border-radius: 0;
     }
   }
 }
