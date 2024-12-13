@@ -17,8 +17,8 @@ const props = defineProps({
 
 <template>
   <div class="calculate flex col btw">
-    <div class="flex btw">
-      <h3>Mortage Calculator</h3>
+    <div class="flex btw clear">
+      <h2>Mortage Calculator</h2>
       <u @click="handleClearAll">Clear all</u>
     </div>
     <div class="form flex col even">
@@ -85,7 +85,7 @@ const props = defineProps({
 </template>
 
 <style scoped>
-h3 {
+h2 {
   color: var(--slate-900);
 }
 
@@ -106,7 +106,7 @@ input[type="number"] {
   border: 2px solid var(--slate-500);
   height: 53px;
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--slate-900);
@@ -287,6 +287,54 @@ input[type="number"] {
 
   &:hover {
     opacity: 0.8;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #app {
+
+    .calculate {
+      padding: 5%;
+    }
+    .clear {
+      /* border: 2px solid; */
+      flex-direction: column;
+      height: 10%;
+    }
+
+    .form {
+      height: 88%;
+    }
+
+    .amount {
+      /* border: 2px solid; */
+      min-height: 16%;
+    }
+
+    .team {
+      /* border: 2px solid; */
+      flex-direction: column;
+      height: 33%;
+
+      span {
+        width: 20%;
+      }
+
+      div.col {
+        width: 100%;
+      }
+    }
+
+    .type {
+      height: 33%;
+    }
+
+    .btn {
+      width: 100%;
+      span , img {
+        scale: 1.2;
+      }
+    }
   }
 }
 </style>

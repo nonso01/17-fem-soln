@@ -4,7 +4,6 @@ import Res from "./components/Res.vue";
 import Calc from "./components/Calc.vue";
 
 const log = console.log;
-// const poundSign = '£'
 const resultAvailable = ref(false);
 const monthlyCost = ref(0.0);
 const anualCost = ref(0.0);
@@ -93,11 +92,7 @@ function mortage(amount, years, rate) {
 }
 
 function handleCalculate() {
-  log(mortageProps.value);
-  // log(mortageErrors.value);
-
-  // work on formating 1000 == 1,000
-  // .toLocalString('en-US') will do
+  // log(mortageProps.value);
 
   mortageProps.value.amount <= 0 ? (mortageErrors.value.amount = true) : void 0;
   mortageProps.value.years <= 0 ? (mortageErrors.value.years = true) : void 0;
@@ -123,9 +118,7 @@ function handleCalculate() {
         log("error");
     }
 
-    log("all false");
-  } else {
-    log("some true");
+    // log("all false");
   }
 }
 </script>
@@ -174,6 +167,9 @@ function handleCalculate() {
 }
 
 @media screen and (max-width: 600px) {
+  html {
+    background-color: var(--white);
+  }
   #app {
     .calculator {
       /* border: 2px solid red; */
@@ -186,12 +182,13 @@ function handleCalculate() {
 
     .calculate {
       /* background-color: black; */
-      border: 2px solid red;
+      /* border: 2px solid red; */
       width: 100%;
-      height: 800px;
+      height: 700px;
     }
 
     .res {
+      /* border: 2px solid yellow; */
       width: 100%;
       height: 500px;
       border-radius: 0;

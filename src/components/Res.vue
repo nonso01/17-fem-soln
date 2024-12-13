@@ -58,6 +58,7 @@ const props = defineProps({
   h2,
   h3 {
     color: var(--white);
+    overflow-x: auto;
   }
   p {
     color: var(--slate-300);
