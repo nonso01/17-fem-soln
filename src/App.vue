@@ -161,36 +161,27 @@ function handleCalculate() {
     .calculator {
       width: min(60dvw, 1100px);
       height: min(70dvh, 570px);
-      /* background-color: black; */
     }
   }
 }
 
 @media screen and (max-width: 600px) {
-  html {
-    background-color: var(--white);
-  }
   #app {
     .calculator {
-      /* border: 2px solid red; */
       border-radius: 0;
-      /* flex-direction: column; */
       display: block;
       width: 100dvw;
       min-height: 100dvh;
     }
 
     .calculate {
-      /* background-color: black; */
-      /* border: 2px solid red; */
       width: 100%;
       height: 700px;
     }
 
     .res {
-      /* border: 2px solid yellow; */
       width: 100%;
-      height: 500px;
+      height: 400px;
       border-radius: 0;
     }
   }

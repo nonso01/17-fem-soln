@@ -28,12 +28,12 @@ const props = defineProps({
         <div class="monthly">
           <p>Your monthly repayment</p>
 
-          <h1>£{{ monthlyCost.toLocaleString('en-US') }}</h1>
+          <h1>£{{ monthlyCost.toLocaleString("en-US") }}</h1>
         </div>
         <div class="line"></div>
         <div class="anual">
           <p>Total you'll repay over the term</p>
-          <h2>£{{ anualCost.toLocaleString('en-US') }}</h2>
+          <h2>£{{ anualCost.toLocaleString("en-US") }}</h2>
         </div>
       </div>
     </div>
@@ -88,6 +88,7 @@ const props = defineProps({
 
       p {
         margin-bottom: 0.3rem;
+        text-wrap: pretty;
       }
     }
 
@@ -101,6 +102,24 @@ const props = defineProps({
       font-size: 3.1rem;
       color: var(--lime);
       overflow-x: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #app {
+    .yes-res {
+      /* border: 2px solid red; */
+      height: 100%;
+      padding-inline: 6%;
+
+      .total {
+        height: 55%;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
     }
   }
 }

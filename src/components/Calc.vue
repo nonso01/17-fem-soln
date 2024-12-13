@@ -124,6 +124,7 @@ input[type="number"] {
 .calculate {
   width: 50%;
   padding: 3%;
+  background-color: var(--white);
 }
 
 .form {
@@ -168,6 +169,8 @@ input[type="number"] {
     border-right: 0px;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
+    border-color: transparent;
+    background-clip: content-box;
   }
 
   div {
@@ -223,6 +226,8 @@ input[type="number"] {
     border-left: 0px;
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+    border-color: transparent;
+    background-clip: content-box;
   }
 }
 
@@ -292,12 +297,10 @@ input[type="number"] {
 
 @media screen and (max-width: 600px) {
   #app {
-
     .calculate {
       padding: 5%;
     }
     .clear {
-      /* border: 2px solid; */
       flex-direction: column;
       height: 10%;
     }
@@ -307,12 +310,10 @@ input[type="number"] {
     }
 
     .amount {
-      /* border: 2px solid; */
       min-height: 16%;
     }
 
     .team {
-      /* border: 2px solid; */
       flex-direction: column;
       height: 33%;
 
@@ -331,7 +332,8 @@ input[type="number"] {
 
     .btn {
       width: 100%;
-      span , img {
+      span,
+      img {
         scale: 1.2;
       }
     }
