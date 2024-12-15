@@ -37,7 +37,7 @@ const props = defineProps({
           <p>Mortage Team</p>
           <div>
             <span class="bd flex center bold">Years</span>
-            <input type="number" min="1" max="25" @input="handleMortageYears" />
+            <input type="number" min="1" max="50" @input="handleMortageYears" />
           </div>
           <p class="error" v-if="yearError">
             {{ invalidNum ? "Max is 50" : "This field is required" }}
