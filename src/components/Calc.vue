@@ -278,7 +278,7 @@ input[type="number"] {
   height: min(12%, 55px);
   width: 70%;
   border-radius: 2rem;
-  padding-inline: 10%;
+  padding-inline: 7%;
   background-color: var(--lime);
 
   &:active {
