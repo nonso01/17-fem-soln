@@ -1,10 +1,10 @@
 <script setup>
 const props = defineProps({
   handleClearAll: Function,
-  handleMortageAmount: Function,
-  handleMortageYears: Function,
-  handleMortageRate: Function,
-  handleMortageType: Function,
+  handleMortgageAmount: Function,
+  handleMortgageYears: Function,
+  handleMortgageRate: Function,
+  handleMortgageType: Function,
   handleCalculate: Function,
   amountError: Boolean,
   yearError: Boolean,
@@ -18,15 +18,15 @@ const props = defineProps({
 <template>
   <div class="calculate flex col btw">
     <div class="flex btw clear">
-      <h2>Mortage Calculator</h2>
+      <h2>Mortgage Calculator</h2>
       <u @click="handleClearAll">Clear all</u>
     </div>
     <div class="form flex col even">
       <div class="amount flex col btw">
-        <p>Mortage Amount</p>
+        <p>Mortgage Amount</p>
         <div class="">
           <span class="bd flex center bold">£</span>
-          <input type="text" @input="handleMortageAmount" />
+          <input type="text" @input="handleMortgageAmount" />
         </div>
         <p v-if="amountError" class="error">
           {{ invalidChar ? "Not a Number" : "This field is required" }}
@@ -34,10 +34,10 @@ const props = defineProps({
       </div>
       <div class="team flex btw">
         <div class="flex col btw">
-          <p>Mortage Team</p>
+          <p>Mortgage Team</p>
           <div>
             <span class="bd flex center bold">Years</span>
-            <input type="number" min="1" max="50" @input="handleMortageYears" />
+            <input type="number" min="1" max="50" @input="handleMortgageYears" />
           </div>
           <p class="error" v-if="yearError">
             {{ invalidNum ? "Max is 50" : "This field is required" }}
@@ -47,20 +47,20 @@ const props = defineProps({
           <p>Interest Rate</p>
           <div>
             <span class="bd flex center bold">%</span>
-            <input type="number" min="0.5" @input="handleMortageRate" />
+            <input type="number" min="0.5" @input="handleMortgageRate" />
           </div>
           <p class="error" v-if="rateError">This field is required</p>
         </div>
       </div>
       <div class="type flex col even">
-        <p>Mortage Type</p>
+        <p>Mortgage Type</p>
         <div class="trans">
           <input
             type="radio"
             id="repay"
             name="pay"
             class="trans"
-            @change="handleMortageType"
+            @change="handleMortgageType"
           />
           <span>Repayment</span>
         </div>
@@ -70,7 +70,7 @@ const props = defineProps({
             id="interest"
             name="pay"
             class="trans"
-            @change="handleMortageType"
+            @change="handleMortgageType"
           />
           <span>Interest Only</span>
         </div>

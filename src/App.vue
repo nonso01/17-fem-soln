@@ -8,14 +8,14 @@ const resultAvailable = ref(false);
 const monthlyCost = ref(0.0);
 const anualCost = ref(0.0);
 
-const mortageProps = ref({
+const mortgageProps = ref({
   amount: 0,
   years: 0,
   rate: 0,
   type: "",
 });
 
-const mortageErrors = ref({
+const mortgageErrors = ref({
   amount: false,
   years: false,
   rate: false,
@@ -33,47 +33,47 @@ function handleClearAll() {
     i.value = "";
     i.checked = false;
   });
-  mortageProps.value = {
+  mortgageProps.value = {
     amount: 0,
     years: 0,
     rate: 0,
     type: "",
   };
 
-  for (let p in mortageErrors.value) mortageErrors.value[p] = false;
+  for (let p in mortgageErrors.value) mortgageErrors.value[p] = false;
 }
 
-function handleMortageAmount({ target }) {
-  mortageProps.value.amount = Number(target?.value);
-  mortageErrors.value.amount = isNaN(mortageProps.value.amount);
-  invalidChar.value = mortageErrors.value.amount;
+function handleMortgageAmount({ target }) {
+  mortgageProps.value.amount = Number(target?.value);
+  mortgageErrors.value.amount = isNaN(mortgageProps.value.amount);
+  invalidChar.value = mortgageErrors.value.amount;
 }
 
-function handleMortageYears({ target }) {
-  mortageProps.value.years = Number(target?.value);
-  mortageErrors.value.years = false;
+function handleMortgageYears({ target }) {
+  mortgageProps.value.years = Number(target?.value);
+  mortgageErrors.value.years = false;
 
   if (Number(target?.value) > 50) {
-    mortageErrors.value.years = true;
+    mortgageErrors.value.years = true;
     invalidNum.value = true;
   }
 }
 
-function handleMortageRate({ target }) {
-  mortageProps.value.rate = Number(target?.value);
-  mortageErrors.value.rate = false;
+function handleMortgageRate({ target }) {
+  mortgageProps.value.rate = Number(target?.value);
+  mortgageErrors.value.rate = false;
 }
 
-function handleMortageType({ target }) {
-  mortageProps.value.type = target?.id;
-  mortageErrors.value.type = false;
+function handleMortgageType({ target }) {
+  mortgageProps.value.type = target?.id;
+  mortgageErrors.value.type = false;
 }
 
 function t2Dec(n = 78.6767) {
   return Number(n.toFixed(2));
 }
 
-function mortage(amount, years, rate) {
+function mortgage(amount, years, rate) {
   const r = rate / 12 / 100;
   const plus_one = r + 1;
   const n = years * 12;
@@ -92,18 +92,18 @@ function mortage(amount, years, rate) {
 }
 
 function handleCalculate() {
-  // log(mortageProps.value);
+  // log(mortgageProps.value);
 
-  mortageProps.value.amount <= 0 ? (mortageErrors.value.amount = true) : void 0;
-  mortageProps.value.years <= 0 ? (mortageErrors.value.years = true) : void 0;
-  mortageProps.value.rate <= 0 ? (mortageErrors.value.rate = true) : void 0;
-  mortageProps.value.type === "" ? (mortageErrors.value.type = true) : void 0;
+  mortgageProps.value.amount <= 0 ? (mortgageErrors.value.amount = true) : void 0;
+  mortgageProps.value.years <= 0 ? (mortgageErrors.value.years = true) : void 0;
+  mortgageProps.value.rate <= 0 ? (mortgageErrors.value.rate = true) : void 0;
+  mortgageProps.value.type === "" ? (mortgageErrors.value.type = true) : void 0;
 
-  if (Object.values(mortageErrors.value).every((x) => x === false)) {
-    const { amount, years, rate } = mortageProps.value;
-    const res = mortage(amount, years, rate);
+  if (Object.values(mortgageErrors.value).every((x) => x === false)) {
+    const { amount, years, rate } = mortgageProps.value;
+    const res = mortgage(amount, years, rate);
 
-    switch (mortageProps.value.type) {
+    switch (mortgageProps.value.type) {
       case "repay":
         resultAvailable.value = true;
         monthlyCost.value = res.repayment.monthly;
@@ -125,15 +125,15 @@ function handleCalculate() {
   <div class="calculator flex btw">
     <Calc
       :handleClearAll="handleClearAll"
-      :handleMortageAmount="handleMortageAmount"
-      :handleMortageYears="handleMortageYears"
-      :handleMortageRate="handleMortageRate"
-      :handleMortageType="handleMortageType"
+      :handleMortgageAmount="handleMortgageAmount"
+      :handleMortgageYears="handleMortgageYears"
+      :handleMortgageRate="handleMortgageRate"
+      :handleMortgageType="handleMortgageType"
       :handleCalculate="handleCalculate"
-      :amount-error="mortageErrors.amount"
-      :year-error="mortageErrors.years"
-      :rate-error="mortageErrors.rate"
-      :type-error="mortageErrors.type"
+      :amount-error="mortgageErrors.amount"
+      :year-error="mortgageErrors.years"
+      :rate-error="mortgageErrors.rate"
+      :type-error="mortgageErrors.type"
       :invalid-char="invalidChar"
       :invalid-num="invalidNum"
     />
