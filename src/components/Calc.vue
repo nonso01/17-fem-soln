@@ -26,8 +26,10 @@ const props = defineProps({
         <p>Mortgage Amount</p>
         <div class="">
           <span class="bd flex center bold">£</span>
-          <input type="text" @input="handleMortgageAmount" id="amt" />
-          <label for="amt"></label>
+
+          <label for="amt"
+            ><input type="text" @input="handleMortgageAmount" id="amt"
+          /></label>
         </div>
         <p v-if="amountError" class="error">
           {{ invalidChar ? "Not a Number" : "This field is required" }}
@@ -38,14 +40,16 @@ const props = defineProps({
           <p>Mortgage Team</p>
           <div>
             <span class="bd flex center bold">Years</span>
-            <input
-              type="number"
-              min="1"
-              max="50"
-              id="years"
-              @input="handleMortgageYears"
-            />
-            <label for="years"></label>
+
+            <label for="years">
+              <input
+                type="number"
+                min="1"
+                max="50"
+                id="years"
+                @input="handleMortgageYears"
+              />
+            </label>
           </div>
           <p class="error" v-if="yearError">
             {{ invalidNum ? "Max is 50 years" : "This field is required" }}
@@ -55,8 +59,14 @@ const props = defineProps({
           <p>Interest Rate</p>
           <div>
             <span class="bd flex center bold">%</span>
-            <input type="number" min="0.5" @input="handleMortgageRate" id="rate" />
-            <label for="rate"></label>
+
+            <label for="rate">
+              <input
+                type="number"
+                min="0.5"
+                @input="handleMortgageRate"
+                id="rate"
+            /></label>
           </div>
           <p class="error" v-if="rateError">This field is required</p>
         </div>
