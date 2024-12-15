@@ -10,7 +10,7 @@ const props = defineProps({
   <div class="res">
     <!-- attach a transition -->
     <div class="no-res flex center col even" v-if="!resultAvailable">
-      <img src="/images/illustration-empty.svg" />
+      <img src="/images/illustration-empty.svg" alt="illustration" />
       <h2>Results shown here</h2>
       <p>
         Complete the form and click "calculate repayment" to see what your
