@@ -117,8 +117,6 @@ function handleCalculate() {
       default:
         log("error");
     }
-
-    // log("all false");
   }
 }
 </script>
@@ -159,13 +157,37 @@ function handleCalculate() {
 @media screen and (min-width: 1440px) {
   #app {
     .calculator {
-      width: min(60dvw, 1100px);
-      height: min(70dvh, 570px);
+      width: min(60dvw, 68.75rem);
+      height: min(70dvh, 35.625rem);
     }
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1430px) {
+  #app {
+    .calculator {
+      width: 80dvw;
+      height: 80dvh;
+    }
+    /* .calculate {
+      background-color: indigo;
+    } */
+  }
+}
+@media screen and (max-width: 980px) {
+  #app {
+    .calculator {
+      /* background-color: red; */
+      width: 100dvw;
+      height: 35rem;
+    }
+    /* .calculate {
+      background-color: red;
+    } */
+  }
+}
+
+@media screen and (max-width: 850px) {
   #app {
     .calculator {
       border-radius: 0;
@@ -176,12 +198,13 @@ function handleCalculate() {
 
     .calculate {
       width: 100%;
-      height: 700px;
+      height: 43.75rem;
+      /* background-color: green; */
     }
 
     .res {
       width: 100%;
-      height: 400px;
+      height: 25rem;
       border-radius: 0;
     }
   }

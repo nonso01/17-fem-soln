@@ -167,8 +167,8 @@ input[type="number"] {
     width: 10%;
     background-color: var(--slate-100);
     border-right: 0px;
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
     border-color: transparent;
     background-clip: content-box;
   }
@@ -220,12 +220,12 @@ input[type="number"] {
   span {
     position: absolute;
     right: 0;
-    height: 100%;
+    height: max(53px, 100%);
     width: 35%;
     background-color: var(--slate-100);
     border-left: 0px;
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
     border-color: transparent;
     background-clip: content-box;
   }
@@ -295,7 +295,7 @@ input[type="number"] {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   #app {
     .calculate {
       padding: 5%;
@@ -334,7 +334,7 @@ input[type="number"] {
       width: 100%;
       span,
       img {
-        scale: 1.2;
+        scale: 1.15;
       }
     }
   }

@@ -63,6 +63,7 @@
 html {
   min-height: 100dvh;
   background-color: var(--slate-100);
+  scroll-behavior: smooth;
 
   body,
   #app {
